@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+server/public/
+.env
+.env.local
+server/data/
+*.db
+*.db-shm
+*.db-wal
+.DS_Store
+npm-debug.log*
+.vscode/
+*.log

@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  /* --- Color tokens --- */
+  --color-ink: #0c0f14;
+  --color-ink-raised: #12161d;
+  --color-ledger: #232a35;
+  --color-ledger-soft: #1a2029;
+  --color-paper: #f6f3ec;
+  --color-paper-dim: #ece7db;
+  --color-ink-text: #141922;
+  --color-mist: #8b93a3;
+  --color-mist-dim: #5b6472;
+
+  --color-teal: #1fae84;
+  --color-teal-bright: #35d6a4;
+  --color-teal-dim: #103b2f;
+  --color-amber: #e8a33d;
+  --color-amber-bright: #f5bc63;
+  --color-amber-dim: #3a2c14;
+  --color-rose: #e5626a;
+  --color-rose-dim: #3a1c1f;
+
+  /* --- Type --- */
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  scrollbar-color: var(--color-ledger) transparent;
+}
+
+::selection {
+  background: var(--color-teal-dim);
+  color: var(--color-teal-bright);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Ledger / stamp signature texture used on trust breakdown cards */
+.ledger-card {
+  background:
+    repeating-linear-gradient(180deg, transparent, transparent 27px, rgba(255,255,255,0.028) 28px),
+    var(--color-ink-raised);
+  border: 1px solid var(--color-ledger);
+}
+
+.stamp-ring {
+  border: 1.5px dashed color-mix(in srgb, var(--color-teal) 55%, transparent);
+}
+
+@keyframes dash-rotate {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -100; }
+}
+.animate-dash {
+  animation: dash-rotate 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-dash { animation: none; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid var(--color-teal-bright);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: var(--color-ledger); border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }

@@ -1,0 +1,23 @@
+# Single-service Render Blueprint: one Node process serves both the API
+# and the built React frontend from the SAME origin - no CORS, no second
+# deployment, no VITE_API_BASE needed. This is the recommended option if
+# you just want one working deployed link.
+#
+# In Render: New -> Blueprint -> point at this file (rename to render.yaml
+# at repo root, or paste these settings manually into a Web Service).
+services:
+  - type: web
+    name: trustnet
+    runtime: node
+    plan: free
+    buildCommand: npm run render-build
+    startCommand: npm run render-start
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATA_DIR
+        value: /var/data
+    disk:
+      name: trustnet-data
+      mountPath: /var/data
+      sizeGB: 1
